@@ -1,0 +1,14 @@
+{
+  "name": "simple_ecommence",
+  "version": "1.0.0",
+  "description": "This is a simple e-commence website developed using html, css, javascript, and node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
