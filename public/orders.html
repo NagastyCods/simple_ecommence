@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Device Specifications</title>
+    <title>orders</title>
 </head>
 <body>
     <div class="header">
@@ -25,39 +25,52 @@
         </nav>
         
     </div>
-
-    <div class="container">
-        <h1>Device Specifications</h1>
-        <dl class="specs">
-            <dt>Device Name:</dt>
-            <dd>Example Device</dd>
-            <dt>Brand:</dt>
-            <dd>Example Brand</dd>
-            <dt>Model:</dt>
-            <dd>XYZ123</dd>
-            <dt>Processor:</dt>
-            <dd>Octa-Core 2.3GHz</dd>
-            <dt>RAM:</dt>
-            <dd>8GB</dd>
-            <dt>Storage:</dt>
-            <dd>128GB</dd>
-            <dt>Display:</dt>
-            <dd>6.5-inch AMOLED</dd>
-            <dt>Battery:</dt>
-            <dd>4500mAh</dd>
-            <dt>Camera:</dt>
-            <dd>48MP + 12MP + 5MP (Rear), 16MP (Front)</dd>
-            <dt>Operating System:</dt>
-            <dd>Android 12</dd>
-        </dl>
-        <div class="btns">
-            <button id="back-button">Back</button>
-            <button id="pay-button">order now</button>
+    <!-- <main class="orders-section">
+        <h2>Your Orders</h2>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="ordersBody">
+                <!-- Orders will be populated here by JS -->
+            </tbody>
+        </table>
+        <div id="noOrders" style="display:none; text-align:center; margin-top:2rem;">
+            <p>You have no orders yet. <a href="index.html">Shop now!</a></p>
         </div>
-    </div>
+    </main>
+   
+     -->
+
+    <main class="orders-section">
+        <h2>Your Orders</h2>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="ordersBody">
+                <!-- Populated by JS -->
+            </tbody>
+        </table>
+        <div id="noOrders" style="display:none; text-align:center; margin-top:2rem;">
+            <p>You have no orders yet. <a href="index.html">Shop now!</a></p>
+        </div>
+    </main>
 
     <!-- footer -->
-     <footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
                 <h3>ShopEase</h3>
