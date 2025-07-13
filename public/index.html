@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>E-commernce store</title>
+    <title>CampusPlug</title>
 </head>
 <body>
     <div class="header">
         <nav>
             <div class="logo">
-                <p><a href="">SupaMart</a></p>
+                <img src="images/logo.jpg" alt="">
+                <p><a href="">CampusPlug</a></p>
             </div>
             <div class="hamburger-menu" onclick="toggleMenu()">
                 &#9776;
             </div>
             <ul class="nav-links" id="navLinks">
+                <li class="close-btn" onclick="toggleMenu()">&times;</li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="orders.html">Orders</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
@@ -27,6 +29,10 @@
     </div>
 
     <section class="products" id="products">
+        <div class="search">
+            <input type="text" name="search" id="search-input" placeholder="phone,laptops, tablets ...">
+            <button type="button" class="search-btn">Search</button>
+        </div>
         <h2>Hot deals</h2>
         <div class="product-row">
             <div class="product1">
@@ -38,7 +44,7 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn">order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button class="spec-btn" onclick="viewSpec('Galaxy s23', 'images/s23 ultra.jpeg', 'Ghs 2,000')"><a href="spec.html">view spec</a></button>
                 </div>
             </div>
             <div class="product1">
@@ -50,7 +56,7 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn">order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button class="spec-btn" onclick="viewSpec('Galaxy note 9', 'images/not 9.jpeg', 'Ghs 2,000')"><a href="spec.html">view spec</a></button>
                 </div>
             </div>
             <div class="product1">
@@ -62,7 +68,7 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn">order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button  class="spec-btn" onclick="viewSpec('Galaxy note 20', 'images/note 20.jpeg', 'Ghs 2,000')"><a href="spec.html">view spec</a></button>
                 </div>
             </div>
             <div class="product1">
@@ -74,7 +80,7 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn">order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button class="spec-btn" onclick="viewSpec('Galaxy s24 ultra', 'images/s24 ultra.jpeg', 'Ghs 2,000')"><a href="spec.html">view spec</a></button>
                 </div>
             </div>
         </div>
@@ -91,11 +97,11 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn" >order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button class="spec-btn" onclick="viewSpec('Galaxy s23', 'images/s23 ultra.jpeg', 'Ghs 2,000')" ><a href="spec.html">view spec</a></button>
                 </div>
             </div>
             <div class="product1">
-                <h3>Galaxy s23 </h3>
+                <h3> Iphone 15promax </h3>
                 <img src="images/15proMaxGrey.jpeg" alt="">
                 <div class="prices">
                     <p class="old-price">Ghs 2500</p>
@@ -103,11 +109,11 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn">order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button class="spec-btn" onclick="viewSpec('Iphone 15promax', 'images/15promaxGrey.jpeg', 'Ghs 2,000')"><a href="spec.html">view spec</a></button>
                 </div>
             </div>
             <div class="product1">
-                <h3>Galaxy s23 </h3>
+                <h3>Iphone 14 promax </h3>
                 <img src="images/14proMax.png" alt="">
                 <div class="prices">
                     <p class="old-price">Ghs 2500</p>
@@ -115,11 +121,11 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn" >order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button class="spec-btn" onclick="viewSpec('Iphone 14 promax', 'images/14proMax.png', 'Ghs 2,000')"><a href="spec.html">view spec</a></button>
                 </div>
             </div>
             <div class="product1">
-                <h3>Galaxy s23 </h3>
+                <h3> Iphone 15 promax</h3>
                 <img src="images/15promax.jpeg" alt="">
                 <div class="prices">
                     <p class="old-price">Ghs 2500</p>
@@ -127,7 +133,7 @@
                 </div>
                 <div class="btns">
                     <button class="order-btn" >order now</button>
-                    <button ><a href="spec.html">view spec</a></button>
+                    <button class="spec-btn" onclick="viewSpec('iphone 15promax', 'images/15promaxGrey.jpeg', 'Ghs 2,000')"><a href="spec.html">view spec</a></button>
                 </div>
             </div>
         </div>
@@ -136,8 +142,8 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
-                <h3>ShopEase</h3>
-                <p>Buy all mobile phone brand at one shopEase.</p>
+                <h3>CampusPlug</h3>
+                <p>Buy all mobile phone brand at one CampusPlug.</p>
             </div>
             <div class="footer-column">
                 <h4>Quick Links</h4>
@@ -151,7 +157,7 @@
             </div>
             <div class="footer-column">
                 <h4>Contact Us</h4>
-                <p>Email: support@shopease.com</p>
+                <p>Email: taopheeqagboh00@gmail.com</p>
                 <p>Phone: +233 542900630</p>
                 <p>Address: Accra, Ghana</p>
             </div>
@@ -169,7 +175,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 ShopEase. All rights reserved.</p>
+            <p>&copy; 2025 CampusPlug. All rights reserved.</p>
         </div>
     </footer>
 

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>orders</title>
+    <title>Account | SupaMart</title>
 </head>
 <body>
+
     <div class="header">
         <nav>
             <div class="logo">
@@ -26,34 +27,24 @@
         </nav>
         
     </div>
-    
 
-    <main class="orders-section">
-        <h2>Your Orders</h2>
-        <table class="orders-table">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="ordersBody">
-                <!-- Populated by JS -->
-            </tbody>
-        </table>
-        <div id="noOrders" style="display:none; text-align:center; margin-top:2rem;">
-            <p>You have no orders yet. <a href="index.html">Shop now!</a></p>
-        </div>
-
-    </main>
+    <div class="container">
+        <h2 id="formTitle">Login</h2>
+        <form id="authForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <div id="extraFields" style="display: none;">
+                <input type="email" id="email" placeholder="Email">
+            </div>
+            <button type="submit" id="submitBtn">Login</button>
+        </form>
+        <div class="toggle-link" onclick="toggleForm()">Don't have an account? Register</div>
+    </div>
 
 
-    <!-- footer -->
-    <footer class="footer">
+
+
+<footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
                 <h3>CampusPlug</h3>

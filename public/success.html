@@ -7,8 +7,69 @@
     <title>Payment successful</title>
 </head>
 <body>
+    <div class="header">
+        <nav>
+            <div class="logo">
+                <p><a href="">SupaMart</a></p>
+            </div>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                &#9776;
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li class="close-btn" onclick="toggleMenu()">&times;</li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="account.html">Account</a></li>
+               
+            </ul>
+        </nav>
+        
+    </div>
 
-     <div id="success-container"></div>
+    <div id="success-container"></div>
+
+
+<!-- footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>CampusPlug</h3>
+                <p>Buy all mobile phone brand at one CampusPlug.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <p>Email: taopheeqagboh00@gmail.com</p>
+                <p>Phone: +233 542900630</p>
+                <p>Address: Accra, Ghana</p>
+            </div>
+            <div class="footer-column">
+                <h4>Stay Connected</h4>
+                <div class="social-icons">
+                    <a href="#"><img src="icons/facebook.svg" alt="Facebook" /></a>
+                    <a href="#"><img src="icons/instagram.png" alt="Twitter" /></a>
+                    <a href="#"><img src="icons/whatsapp.svg" alt="Instagram" /></a>
+                </div>
+                <form class="newsletter">
+                    <input type="email" placeholder="Subscribe to newsletter" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CampusPlug. All rights reserved.</p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

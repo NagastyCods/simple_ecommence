@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>orders</title>
+    <title>Admin Dashboard</title>
 </head>
 <body>
     <div class="header">
@@ -26,38 +26,62 @@
         </nav>
         
     </div>
-    
+<!-- main -->
+    <div class="admin-container">
+        <h1>Admin Dashboard</h1>
 
-    <main class="orders-section">
-        <h2>Your Orders</h2>
-        <table class="orders-table">
+        <h2>All Orders</h2>
+        <table id="orders-table">
             <thead>
                 <tr>
                     <th>Order ID</th>
-                    <th>Product Name</th>
+                    <th>Product</th>
                     <th>Quantity</th>
                     <th>Date</th>
                     <th>Status</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody id="orders-body">
+                <!-- Orders inserted by JS -->
+            </tbody>
+        </table>
+
+        <h2>Manage Products</h2>
+        <form id="product-form">
+            <div class="form-group">
+                <input type="text" id="product-name" placeholder="Product Name" required />
+            </div>
+            <div class="form-group">
+                <input type="text" id="product-price" placeholder="Price" required />
+            </div>
+            <div class="form-group">
+                <input type="text" id="product-img" placeholder="Image Path (e.g. images/phone.jpg)" required />
+            </div>
+            <button type="submit">Add / Update Product</button>
+        </form>
+
+        <table id="products-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="ordersBody">
-                <!-- Populated by JS -->
+            <tbody id="products-body">
+                <!-- Products inserted by JS -->
             </tbody>
         </table>
-        <div id="noOrders" style="display:none; text-align:center; margin-top:2rem;">
-            <p>You have no orders yet. <a href="index.html">Shop now!</a></p>
-        </div>
-
-    </main>
-
+    </div>
 
     <!-- footer -->
-    <footer class="footer">
+         <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
-                <h3>CampusPlug</h3>
-                <p>Buy all mobile phone brand at one CampusPlug.</p>
+                <h3>SupaMart</h3>
+                <p>Buy all mobile phone brand at one shopEase.</p>
             </div>
             <div class="footer-column">
                 <h4>Quick Links</h4>
@@ -89,9 +113,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 CampusPlug. All rights reserved.</p>
+            <p>&copy; 2025 SuperMart. All rights reserved.</p>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
