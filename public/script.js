@@ -367,3 +367,103 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 });
+
+// account
+
+ const formTitle  = document.getElementById('formTitle');
+    const authForm   = document.getElementById('authForm');
+    const extra      = document.getElementById('extraFields');
+    const submitBtn  = document.getElementById('submitBtn');
+    const toggleLink = document.getElementById('toggleLink');
+
+    /* ---------- state ---------- */
+    let loginMode = true;     // true = login, false = register
+
+    /* ---------- helpers ---------- */
+    const getUsers  = () => JSON.parse(localStorage.getItem('users') || '[]');
+    const saveUsers = users => localStorage.setItem('users', JSON.stringify(users));
+
+    /* ---------- UI‑mode switch ---------- */
+    function toggleForm() {
+      loginMode = !loginMode;
+
+      // Heading & button label
+      formTitle.textContent   = loginMode ? 'Login'     : 'Register';
+      submitBtn.textContent   = loginMode ? 'Login'     : 'Register';
+
+      // Toggle email field (animate via max-height and opacity)
+      if (loginMode) {
+        extra.style.maxHeight = '0';
+        extra.style.opacity   = '0';
+      } else {
+        extra.style.maxHeight = '200px';
+        extra.style.opacity   = '1';
+      }
+
+      // Toggle link text
+      toggleLink.textContent  = loginMode
+        ? "Don't have an account? Register"
+        : 'Already have an account? Login';
+    }
+    toggleLink.addEventListener('click', toggleForm);
+
+    /* ---------- core actions ---------- */
+    function register(username, password, email) {
+      if (!username || !password || !email) {
+        alert('Please fill in every field.'); return;
+      }
+
+      const users = getUsers();
+      if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+        alert('Username already exists!'); return;
+      }
+
+      users.push({ username, password, email });
+      saveUsers(users);
+
+      // auto‑login
+      sessionStorage.setItem('currentUser', JSON.stringify({ username, email }));
+      alert('Account created — you are now logged in.');
+      // For demo, simply reload; replace with redirect if needed
+      window.location.reload();
+    }
+
+    function login(username, password) {
+      const user = getUsers().find(
+          u => u.username.toLowerCase() === username.toLowerCase() && u.password === password
+      );
+      if (!user) { alert('Invalid username or password.'); return; }
+
+      sessionStorage.setItem('currentUser', JSON.stringify({ username: user.username, email: user.email }));
+      alert(`Welcome back, ${user.username}!`);
+      window.location.reload();
+    }
+
+    /* ---------- form submit ---------- */
+    authForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const email    = document.getElementById('email').value.trim(); // empty in login mode
+
+      loginMode ? login(username, password) : register(username, password, email);
+    });
+
+    /* ---------- auto‑redirect if already logged in ---------- */
+    (function checkSession(){
+      const current = sessionStorage.getItem('currentUser');
+      if(current){
+        const user = JSON.parse(current);
+        formTitle.textContent=`Hi, ${user.username}!`;
+        authForm.style.display='none';
+        toggleLink.style.display='none';
+        const logoutBtn=document.createElement('button');
+        logoutBtn.textContent='Logout';
+        logoutBtn.style.marginTop='1rem';
+        logoutBtn.onclick=()=>{
+          sessionStorage.removeItem('currentUser');
+          window.location.reload();
+        };
+        document.querySelector('.container').appendChild(logoutBtn);
+      }
+    })();

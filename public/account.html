@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>CampusPlug|laptops</title>
+    <title>Account | Login  & Register</title>
 </head>
 <body>
     <div class="header">
         <nav>
             <div class="logo">
-                <img src="images/logo.jpg" alt="">
-                <p><a href="">CampusPlug</a></p>
+                <p><a href="">SupaMart</a></p>
             </div>
             <div class="hamburger-menu" onclick="toggleMenu()">
                 &#9776;
@@ -22,61 +21,25 @@
                 <li><a href="orders.html">Orders</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
                 <li><a href="account.html">Account</a></li>
-               
             </ul>
         </nav>
-        
     </div>
-    <section class="products" id="products">
-        <div class="search">
-            <input type="text" name="search" id="search-input" placeholder="phone,laptops, tablets ...">
-            <button type="button" class="search-btn">Search</button>
-        </div>
-        <h2>Hot deals</h2>
-        <div class="product-row">
-            <div class="product1">
-                <h3>MacBook Pro 16"</h3>
-                <img src="images/macbookpro 14.3.jpeg" alt="">
-                <div class="prices">
-                    <p class="old-price">Ghs 5000</p>
-                    <p class="new-price">Ghs 4500</p>
-                </div>
-                <div class="btns">
-                    <button class="order-btn">Order Now</button>
-                    <button class="spec-btn" onclick="viewSpec('MacBook pr 16', 'images/macbookpro 14.3.jpg', 'Ghs 4,500')"><a href="spec.html">View Spec</a></button>
-                </div>
-            </div>
-            <div class="product1">
-                <h3>MacBook Pro 16"</h3>
-                <img src="images/macbook pro 13.jpeg" alt="">
-                <div class="prices">
-                    <p class="old-price">Ghs 5000</p>
-                    <p class="new-price">Ghs 4500</p>
-                </div>
-                <div class="btns">
-                    <button class="order-btn">Order Now</button>
-                    <button class="spec-btn" onclick="viewSpec('MacBook pro 16', 'images/macbook pro 13.jpg', 'Ghs 4,500')"><a href="spec.html">View Spec</a></button>
-                </div>
-            </div>
-            <div class="product1">
-                <h3>MacBook Pro 16"</h3>
-                <img src="images/macbook refur.jpeg" alt="">
-                <div class="prices">
-                    <p class="old-price">Ghs 5000</p>
-                    <p class="new-price">Ghs 4500</p>
-                </div>
-                <div class="btns">
-                    <button class="order-btn">Order Now</button>
-                    <button class="spec-btn" onclick="viewSpec('macbook pro 16', 'images/macbook refur.jpg', 'Ghs 4,500')"><a href="spec.html">View Spec</a></button>
-                </div>
-            </div>
-            <!-- Add more laptop products as needed -->
-        </div>
 
+    <div class="container">
+        <h2 id="formTitle">Login</h2>
+        <form id="authForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <div id="extraFields" style="max-height:0;opacity:0">
+                <input type="email" id="email" placeholder="Email" autocomplete="email">
+            </div>
+            <button type="submit" id="submitBtn">Login</button>
+        </form>
+        <div class="toggle-link" id="toggleLink">Don't have an account? Register</div>
+    </div>
 
-
-        <!-- footer -->
-         <footer class="footer">
+    <!-- fooetr -->
+     <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
                 <h3>CampusPlug</h3>
@@ -115,6 +78,7 @@
             <p>&copy; 2025 CampusPlug. All rights reserved.</p>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
