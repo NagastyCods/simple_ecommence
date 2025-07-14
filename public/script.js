@@ -467,3 +467,98 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector('.container').appendChild(logoutBtn);
       }
     })();
+
+    // add to cart functionality
+    document.addEventListener("DOMContentLoaded", () => {
+    
+    product = JSON.parse(localStorage.getItem("checkoutProduct"));
+    if (!product) return;   // nothing to show
+
+    // Populate the checkout view
+    const imgEl   = document.getElementById("product-img");
+    const nameEl  = document.getElementById("product-name");
+    const priceEl = document.getElementById("product-price");
+    const qtyInp  = document.getElementById("product-quantity");
+    const totalEl = document.getElementById("total-price");
+
+    imgEl.src        = product.img;
+    nameEl.textContent  = product.name;
+    priceEl.textContent = parseFloat(product.price).toFixed(2);
+    updateTotal();                       // initial total
+
+    // live‑update total when quantity changes
+    qtyInp.addEventListener("input", updateTotal);
+
+    function updateTotal() {
+        const qty   = parseInt(qtyInp.value) || 1;
+        const total = (parseFloat(product.price) * qty).toFixed(2);
+        totalEl.textContent = total;
+    }
+
+    /* -----------------------------------------------------------
+       2.  “Add to Cart” – store/merge in localStorage
+    ----------------------------------------------------------- */
+    const addBtn = document.getElementById("add-to-cart");
+    addBtn.addEventListener("click", () => {
+        const qty = parseInt(qtyInp.value) || 1;
+
+        // structure of a cart item
+        const cartItem = {
+            name:     product.name,
+            img:      product.img,
+            price:    parseFloat(product.price), // numeric!
+            quantity: qty
+        };
+
+        // fetch existing cart or start a new one
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // if item already exists in cart, just bump the quantity
+        const existingIndex = cart.findIndex(i => i.name === cartItem.name);
+        if (existingIndex !== -1) {
+            cart[existingIndex].quantity += qty;
+        } else {
+            cart.push(cartItem);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("✅ Added to cart!");
+
+        // optional: go back to catalogue or keep user here
+        // window.location.href = "index.html";
+    });
+
+    /* -----------------------------------------------------------
+       3.  Back & Pay‑Now buttons you already have
+    ----------------------------------------------------------- */
+    document.getElementById("back-button")
+            .addEventListener("click", () => window.location.href = "index.html");
+
+    document.getElementById("pay-now-btn")
+            .addEventListener("click", handlePayNow);
+
+    function handlePayNow() {
+        // For now this still pays for JUST this product;
+        // if you later want to pay for the whole cart,
+        // read localStorage.cart here instead.
+        const qty = parseInt(qtyInp.value) || 1;
+        const order = {
+            productId:  Date.now(),   // unique enough for demo
+            productName: product.name,
+            quantity:    qty,
+            date:        new Date().toLocaleDateString(),
+            status:      "Processing",
+            totalPrice:  (product.price * qty).toFixed(2)
+        };
+
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
+        orders.push(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        // remove the one‑off checkoutProduct so the page is reset next time
+        localStorage.removeItem("checkoutProduct");
+
+        // redirect to success page
+        window.location.href = "success.html";
+    }
+});
