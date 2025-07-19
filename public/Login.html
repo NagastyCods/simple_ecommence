@@ -33,12 +33,14 @@
         <form id="authForm">
             <input type="text" id="username" placeholder="Username" required>
             <input type="password" id="password" placeholder="Password" required>
-            <div id="extraFields" style="display: none;">
-                <input type="email" id="email" placeholder="Email">
+            <div id="extraFields" style="max-height:0;opacity:0">
+                <input type="address" id="address" placeholder="Address">
+                <input type="phone" id="phone" placeholder="Phone Number">
+                <input type="email" id="email" placeholder="Email" autocomplete="email">
             </div>
             <button type="submit" id="submitBtn">Login</button>
         </form>
-        <div class="toggle-link" onclick="toggleForm()">Don't have an account? Register</div>
+        <div class="toggle-link" id="toggleLink">Don't have an account? Register</div>
     </div>
 
 

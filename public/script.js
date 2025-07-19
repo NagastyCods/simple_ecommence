@@ -73,26 +73,32 @@ document.addEventListener("DOMContentLoaded", function () {
             
 
             document.getElementById("pay-now-btn").addEventListener("click", function () {
-                const quantity = parseInt(quantityInput.value);
-                const totalPrice = parseFloat(product.price) * quantity;
 
-                const order = {
-                    productId: Math.floor(Math.random() * 1000000),
-                    productName: product.name,
-                    quantity: quantity,
-                    date: new Date().toLocaleDateString(),
-                    status: "Processing",
-                    payment: "Paid",
-                    totalPrice: totalPrice.toFixed(2)
-                };
+                const UserConfirm = confirm("You must sign in with google before making payment")
 
-                const orders = JSON.parse(localStorage.getItem("orders")) || [];
-                orders.push(order);
-                localStorage.setItem("orders", JSON.stringify(orders));
+                if(UserConfirm){
+                    window.location.href = "Login.html";
+                }
+                // const quantity = parseInt(quantityInput.value);
+                // const totalPrice = parseFloat(product.price) * quantity;
 
-                localStorage.removeItem("checkoutProduct");
-                window.location.href = "success.html";
-                backBtn.window.location.href = "index.html"
+                // const order = {
+                //     productId: Math.floor(Math.random() * 1000000),
+                //     productName: product.name,
+                //     quantity: quantity,
+                //     date: new Date().toLocaleDateString(),
+                //     status: "Processing",
+                //     payment: "Paid",
+                //     totalPrice: totalPrice.toFixed(2)
+                // };
+
+                // const orders = JSON.parse(localStorage.getItem("orders")) || [];
+                // orders.push(order);
+                // localStorage.setItem("orders", JSON.stringify(orders));
+
+                // localStorage.removeItem("checkoutProduct");
+                // window.location.href = "success.html";
+                // backBtn.window.location.href = "index.html"
             });
             document.getElementById("back-button").addEventListener("click", function () {
                 window.location.href = "index.html";
@@ -370,7 +376,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // account
 
- const formTitle  = document.getElementById('formTitle');
+/* ---------- element handles ---------- */
+    const formTitle  = document.getElementById('formTitle');
     const authForm   = document.getElementById('authForm');
     const extra      = document.getElementById('extraFields');
     const submitBtn  = document.getElementById('submitBtn');
@@ -396,7 +403,7 @@ document.addEventListener("DOMContentLoaded", function () {
         extra.style.maxHeight = '0';
         extra.style.opacity   = '0';
       } else {
-        extra.style.maxHeight = '200px';
+        extra.style.maxHeight = '400px';
         extra.style.opacity   = '1';
       }
 
@@ -408,8 +415,8 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleLink.addEventListener('click', toggleForm);
 
     /* ---------- core actions ---------- */
-    function register(username, password, email) {
-      if (!username || !password || !email) {
+    function register(username, password,address,phone, email) {
+      if (!username || !password ||!address || !phone || !email) {
         alert('Please fill in every field.'); return;
       }
 
@@ -418,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert('Username already exists!'); return;
       }
 
-      users.push({ username, password, email });
+      users.push({ username, password,address,phone, email });
       saveUsers(users);
 
       // auto‑login
@@ -444,9 +451,11 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value;
+      const address  = document.getElementById('address').value.trim(); // empty in login mode
+      const phone    = document.getElementById('phone').value.trim(); // empty in
       const email    = document.getElementById('email').value.trim(); // empty in login mode
 
-      loginMode ? login(username, password) : register(username, password, email);
+      loginMode ? login(username, password) : register(username, password,address,phone, email);
     });
 
     /* ---------- auto‑redirect if already logged in ---------- */
@@ -454,7 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const current = sessionStorage.getItem('currentUser');
       if(current){
         const user = JSON.parse(current);
-        formTitle.textContent=`Hi, ${user.username}!`;
+        formTitle.innerHTML=`Hi, ${user.username}! <br> You are now Logged in`;
         authForm.style.display='none';
         toggleLink.style.display='none';
         const logoutBtn=document.createElement('button');
@@ -468,97 +477,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })();
 
-    // add to cart functionality
-    document.addEventListener("DOMContentLoaded", () => {
-    
-    product = JSON.parse(localStorage.getItem("checkoutProduct"));
-    if (!product) return;   // nothing to show
 
-    // Populate the checkout view
-    const imgEl   = document.getElementById("product-img");
-    const nameEl  = document.getElementById("product-name");
-    const priceEl = document.getElementById("product-price");
-    const qtyInp  = document.getElementById("product-quantity");
-    const totalEl = document.getElementById("total-price");
-
-    imgEl.src        = product.img;
-    nameEl.textContent  = product.name;
-    priceEl.textContent = parseFloat(product.price).toFixed(2);
-    updateTotal();                       // initial total
-
-    // live‑update total when quantity changes
-    qtyInp.addEventListener("input", updateTotal);
-
-    function updateTotal() {
-        const qty   = parseInt(qtyInp.value) || 1;
-        const total = (parseFloat(product.price) * qty).toFixed(2);
-        totalEl.textContent = total;
-    }
-
-    /* -----------------------------------------------------------
-       2.  “Add to Cart” – store/merge in localStorage
-    ----------------------------------------------------------- */
-    const addBtn = document.getElementById("add-to-cart");
-    addBtn.addEventListener("click", () => {
-        const qty = parseInt(qtyInp.value) || 1;
-
-        // structure of a cart item
-        const cartItem = {
-            name:     product.name,
-            img:      product.img,
-            price:    parseFloat(product.price), // numeric!
-            quantity: qty
-        };
-
-        // fetch existing cart or start a new one
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-        // if item already exists in cart, just bump the quantity
-        const existingIndex = cart.findIndex(i => i.name === cartItem.name);
-        if (existingIndex !== -1) {
-            cart[existingIndex].quantity += qty;
-        } else {
-            cart.push(cartItem);
-        }
-
-        localStorage.setItem("cart", JSON.stringify(cart));
-        alert("✅ Added to cart!");
-
-        // optional: go back to catalogue or keep user here
-        // window.location.href = "index.html";
-    });
-
-    /* -----------------------------------------------------------
-       3.  Back & Pay‑Now buttons you already have
-    ----------------------------------------------------------- */
-    document.getElementById("back-button")
-            .addEventListener("click", () => window.location.href = "index.html");
-
-    document.getElementById("pay-now-btn")
-            .addEventListener("click", handlePayNow);
-
-    function handlePayNow() {
-        // For now this still pays for JUST this product;
-        // if you later want to pay for the whole cart,
-        // read localStorage.cart here instead.
-        const qty = parseInt(qtyInp.value) || 1;
-        const order = {
-            productId:  Date.now(),   // unique enough for demo
-            productName: product.name,
-            quantity:    qty,
-            date:        new Date().toLocaleDateString(),
-            status:      "Processing",
-            totalPrice:  (product.price * qty).toFixed(2)
-        };
-
-        const orders = JSON.parse(localStorage.getItem("orders")) || [];
-        orders.push(order);
-        localStorage.setItem("orders", JSON.stringify(orders));
-
-        // remove the one‑off checkoutProduct so the page is reset next time
-        localStorage.removeItem("checkoutProduct");
-
-        // redirect to success page
-        window.location.href = "success.html";
-    }
-});
