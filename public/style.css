@@ -326,7 +326,9 @@ button:hover {
     text-decoration: 2px solid red line-through;
 }
 .btns{
-    display: grid;
+    display: flex;
+    justify-content: space-between;
+    /* display: grid; */
     grid-template-columns: 2fr 2fr;
     gap: 3px;
     /* flex-wrap: wrap; */
@@ -338,20 +340,30 @@ button:hover {
     
 }
 /* specs  */
-body {
+/* body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-}
-.container {
-    max-width: 800px;
-    margin: 20px auto;
+} */
+/* .container {
+    max-width: 850px;
+    margin: 30px auto;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+} */
+.specs-container {
+     /* width: 100%; */
+     max-width: 850px;
+     background: #ffffffcc;
+     /* backdrop-filter: blur(10px); */
+     border-radius: 8px;
+     box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
+     padding: 2rem 1.5rem;
+     margin: auto;
+ }
 h1 {
     text-align: center;
     color: #333;
@@ -361,7 +373,7 @@ h1 {
 }
 .specs-image-row{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     margin-bottom: 20px;
 }
@@ -372,10 +384,14 @@ h1 {
 .specs dd {
     margin: 0 0 10px 20px;
 }
-#back-button {
-    /* position: relative; */
-    display: block;
-    /* justify-self: center; */
+.btn{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 20px;
+    /* word-wrap: normal; */
+}
+#back-button, #proceed-btn{
     margin: 20px auto;
     width: 100%;
     text-align: center;
@@ -386,6 +402,25 @@ h1 {
     border-radius: 5px;
     transition: background 0.3s;
 }
+@media (max-width: 600px) {
+    .specs-image-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    .specs-image-row img {
+        max-width: 100%;
+        height: auto;
+    }
+    .btn{
+        flex-direction: column;
+        gap: 10%;
+    }
+    #back-button, #proceed-btn{
+        width: 80%;
+    }
+    
+}
+
 .back-button:hover {
     background:  #45a048;
 }

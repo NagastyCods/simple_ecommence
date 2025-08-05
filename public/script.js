@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentPage = window.location.pathname;
     
     // === CHECKOUT PAGE ===
-    if (currentPage.includes("checkout.html")) {
+    if (currentPage.includes("checkout.html") ) {
         const product = JSON.parse(localStorage.getItem("checkoutProduct"));
         if (product) {
             document.getElementById("product-img").src = product.img;
@@ -79,26 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if(UserConfirm){
                     window.location.href = "Login.html";
                 }
-                // const quantity = parseInt(quantityInput.value);
-                // const totalPrice = parseFloat(product.price) * quantity;
-
-                // const order = {
-                //     productId: Math.floor(Math.random() * 1000000),
-                //     productName: product.name,
-                //     quantity: quantity,
-                //     date: new Date().toLocaleDateString(),
-                //     status: "Processing",
-                //     payment: "Paid",
-                //     totalPrice: totalPrice.toFixed(2)
-                // };
-
-                // const orders = JSON.parse(localStorage.getItem("orders")) || [];
-                // orders.push(order);
-                // localStorage.setItem("orders", JSON.stringify(orders));
-
-                // localStorage.removeItem("checkoutProduct");
-                // window.location.href = "success.html";
-                // backBtn.window.location.href = "index.html"
+                
             });
             document.getElementById("back-button").addEventListener("click", function () {
                 window.location.href = "index.html";
@@ -111,11 +92,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     else if(currentPage.includes("spec.html")){
         const backBtn = document.getElementById('back-button');
+        const proceedBtn = document.getElementById('proceed-btn');
         if(backBtn){
             backBtn.addEventListener('click', function(){
                 window.location.href = "index.html";
             })
         }
+        
+        proceedBtn.addEventListener('click', function () {
+            const product = JSON.parse(localStorage.getItem('selectedProduct'));
+            if (product) {
+                localStorage.setItem("checkoutProduct", JSON.stringify({
+                    name: product.name,
+                    img: product.image,
+                    price: product.price,
+                    quantity: 1
+                }));
+                window.location.href = "checkout.html";
+            }
+        });
+        
     
 
     }
